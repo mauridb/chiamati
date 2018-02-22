@@ -1,0 +1,17 @@
+Logic:
+	subscribe
+	unsubscribe
+	publish
+	like
+	dislike
+	share with someone
+	comment
+	gift
+	publish confirmation
+
+Model:
+	Person
+	Militant
+	Post
+	RdVs
+
