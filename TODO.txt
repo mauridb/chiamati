@@ -1,10 +1,15 @@
-Logic:
-	subscribe [Button]
-	unsubscribe [Button]
-	publish [Button]
-	like [Button]
-	dislike [Button]
-	share with someone [Button]
-	comment [Button]
-	gift [Button]
-	publish confirmation
+- post
+- rdv
+- comment
+- tag
+- publish confirmation
+
+- author
+
+- ranking
+- place
+- podium
+- firstplaced
+- secondplaced
+- thirdplaced
+- medal

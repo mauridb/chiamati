@@ -7,9 +7,20 @@ Title:
 
 		** by Maurizio Bussi
 """
-import random
-import uuid
+from models.buttonsUI.buttons_concrete_factory import (
+	FirstNameButtonUIFactory, 
+	LastNameButtonUIFactory, 
+	SubscribeButtonUIFactory, 
+	UnsubscribeButtonUIFactory,
+	LikeButtonUIFactory,
+	DislikeButtonUIFactory,
+	GiftButtonUIFactory,
+	PostButtonUIFactory,
+	ShareButtonUIFactory
+	)
+from models.users.users_concrete_factory import BotUserFactory, MilitantUserFactory
 
+import random
 
 # Telegram System [Abstract]
 class TelegramBotSystem(object):
@@ -22,98 +33,10 @@ class TelegramBotSystem(object):
 
 
 	def show_user(self):
-		obj = self.factory().get_object()
+		obj = self.factory().get_object() # TODO isinstance() check
 		obj_id = obj.get_id()
 		print("OBJECT: ", obj)
 		print("OBJECT_ID: ", obj_id)
-
-
-# Bot user object [Object]
-class BotUser(object):
-	"""
-	BotUser object
-	"""
-	
-	def get_id(self):
-		return str(uuid.uuid1())
-
-	def __str__(self):
-		return "BotUser" 
-
-
-# Militant user object - [Object]
-class MilitantUser(object):
-	"""
-	Militant user object
-	"""
-	
-	def get_id(self):
-		return str(uuid.uuid1())
-
-	def __str__(self):
-		return "MilitantUser"
-
-
-# Bot user - [ConcreteFactory]
-class BotUserFactory(object):
-	"""
-	Concrete bot user factory
-	"""
-
-	def get_object(self):
-		return BotUser()
-
-
-	def get_bio(self):
-		return 'Bot factory user bio'
-
-
-# Militant user - [ConcreteFactory]
-class MilitantUserFactory(object):
-	"""
-	Concrete militant user factory
-	"""
-
-	def get_object(self):
-		return MilitantUser()
-
-
-	def get_bio(self):
-		return 'Militant factory user bio'
-
-
-# ButtonUI FirstName - [Object]
-class FirstNameButtonUI(object):
-
-	def get_id(self):
-		return str(uuid.uuid1())
-
-	def __str__(self):
-		return 'FirstNameButtonUI'
-
-
-# ButtonUI LastName - [Object]
-class LastNameButtonUI(object):
-
-	def get_id(self):
-		return str(uuid.uuid1())
-
-	def __str__(self):
-		return 'LastNameButtonUI'
-
-
-# ButtonUI FirstName - [ConcreteFactory]
-class FirstNameButtonUIFactory(object):
-
-	def get_object(self):
-		return FirstNameButtonUI()
-
-
-# ButtonUI LastName - [ConcreteFactory]
-class LastNameButtonUIFactory(object):
-
-	def get_object(self):
-		return LastNameButtonUI()
 
 
 def get_factory():
@@ -121,11 +44,13 @@ def get_factory():
 		BotUserFactory, 
 		MilitantUserFactory,
 		FirstNameButtonUIFactory,
-		LastNameButtonUIFactory
+		LastNameButtonUIFactory,
+		LikeButtonUIFactory,
+		DislikeButtonUIFactory,
+		SubscribeButtonUIFactory,
+		UnsubscribeButtonUIFactory,
+		GiftButtonUIFactory,
+		PostButtonUIFactory,
+		ShareButtonUIFactory
 		])
 
-
-if __name__ == '__main__':
-	for index in range(4):
-		my_system_bot = TelegramBotSystem(get_factory())
-		my_system_bot.show_user()
